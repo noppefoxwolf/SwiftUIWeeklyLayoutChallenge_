@@ -145,32 +145,3 @@ extension AttributedString {
         return attributedString
     }
 }
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        Topic002View()
-    }
-}
-
-class UnitConverterInverse: UnitConverter {
-    var coefficient: Double
-
-    init(coefficient: Double) {
-        self.coefficient = coefficient
-    }
-
-    override func baseUnitValue(fromValue value: Double) -> Double {
-        return coefficient / value
-    }
-
-    override func value(fromBaseUnitValue baseUnitValue: Double) -> Double {
-        return coefficient / baseUnitValue
-    }
-}
-
-extension UnitSpeed {
-    static let minutesPerKilometer = UnitSpeed(symbol: "min/km",
-        converter: UnitConverterInverse(coefficient: 1000.0 / 60.0))
-}
-
-
